@@ -21,11 +21,10 @@ jobs:
         arguments: build
     #Run Tests
     - name: Run Tests
-      run: ./gradlew
+      run: ./gradlew test
 
   #Build's job
   build:
-    #Depends on sonar's job
     needs: tests
     name: Build
     #Run on Ubuntu using the latest version
@@ -38,17 +37,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '11'
-      #Set up Maven cache
-      - name: Cache Maven packages
-        #This action allows caching dependencies and build outputs to improve workflow execution time.
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-gradle
       #Build the application using Maven
-      - name: Build with Maven
-        run: gradle -B package -DskipTests --file pom.xml
+      - name: Build with Gradle
+        run: ./gradlew build
       #Build the application using Maven
       - name: Upload JAR
         #This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.

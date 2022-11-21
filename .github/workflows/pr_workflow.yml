@@ -27,4 +27,4 @@ jobs:
         arguments: build
     #Run Tests
     - name: Run Tests
-      run: ./gradlew
+      run: ./gradlew test

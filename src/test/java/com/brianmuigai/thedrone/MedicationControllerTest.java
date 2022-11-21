@@ -1,6 +1,5 @@
 package com.brianmuigai.thedrone;
 
-import com.brianmuigai.thedrone.entities.Drone;
 import com.brianmuigai.thedrone.entities.Medication;
 import com.brianmuigai.thedrone.responses.ListResponseWrapper;
 import org.junit.jupiter.api.*;

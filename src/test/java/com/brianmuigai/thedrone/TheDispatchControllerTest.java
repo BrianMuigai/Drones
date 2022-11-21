@@ -1,10 +1,6 @@
 package com.brianmuigai.thedrone;
 
 import com.brianmuigai.thedrone.entities.Delivery;
-import com.brianmuigai.thedrone.entities.Drone;
-import com.brianmuigai.thedrone.entities.Medication;
-import com.brianmuigai.thedrone.enums.DroneModel;
-import com.brianmuigai.thedrone.enums.DroneState;
 import com.brianmuigai.thedrone.responses.BatteryStatusResponse;
 import com.brianmuigai.thedrone.responses.ListResponseWrapper;
 import org.junit.jupiter.api.*;
