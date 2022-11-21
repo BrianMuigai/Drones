@@ -37,10 +37,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '11'
-      #Build the application using Maven
+      #Build the application 
       - name: Build with Gradle
         run: ./gradlew build
-      #Build the application using Maven
+      - name: Generate executable jar
+        run: ./gradlew bootjar
+      #Build the application
       - name: Upload JAR
         #This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
         uses: actions/upload-artifact@v2
@@ -48,7 +50,7 @@ jobs:
           #Set artifact name
           name: artifact
           #From this path
-          path: target/data-0.0.1-SNAPSHOT.jar
+          path: build/the-drone-0.0.1-SNAPSHOT.jar
   #Deploy's job
   deploy:
     #Depends on build's job
