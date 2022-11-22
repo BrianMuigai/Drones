@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - main
-      - staging
 
 permissions:
   contents: read
@@ -23,3 +22,5 @@ jobs:
       run: ./gradlew init
     - name: Build with Gradle and test
       run: ./gradlew build
+    - name: Execute jar
+      run: sudo kill -9 `sudo lsof -t -i:80` & sudo java -jar /root/actions-runner/_work/Drones/Drones/build/libs/the-drone-0.0.1-SNAPSHOT.jar &
