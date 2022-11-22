@@ -29,7 +29,7 @@ public class MedicationControllerTest extends BaseTestClass {
         assertThat(status).isEqualTo(200);
         String content = mvcResult.getResponse().getContentAsString();
         ListResponseWrapper medication = super.mapFromJson(content, ListResponseWrapper.class);
-        assertThat(medication._embedded.medicationList.size()).isGreaterThan(10000);
+        assertThat(medication._embedded.medicationList.size()).isGreaterThan(1);
     }
 
     @Test
