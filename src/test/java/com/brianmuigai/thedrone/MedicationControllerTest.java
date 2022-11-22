@@ -1,6 +1,5 @@
 package com.brianmuigai.thedrone;
 
-import com.brianmuigai.thedrone.entities.Drone;
 import com.brianmuigai.thedrone.entities.Medication;
 import com.brianmuigai.thedrone.responses.ListResponseWrapper;
 import org.junit.jupiter.api.*;
@@ -30,7 +29,7 @@ public class MedicationControllerTest extends BaseTestClass {
         assertThat(status).isEqualTo(200);
         String content = mvcResult.getResponse().getContentAsString();
         ListResponseWrapper medication = super.mapFromJson(content, ListResponseWrapper.class);
-        assertThat(medication._embedded.medicationList.size()).isGreaterThan(0);
+        assertThat(medication._embedded.medicationList.size()).isGreaterThan(1);
     }
 
     @Test

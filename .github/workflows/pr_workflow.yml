@@ -11,9 +11,7 @@ permissions:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -21,10 +19,7 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-      with:
-        arguments: build
-    #Run Tests
-    - name: Run Tests
-      run: ./gradlew
+    - name: Build setup task
+      run: ./gradlew init
+    - name: Build with Gradle and test
+      run: ./gradlew build
