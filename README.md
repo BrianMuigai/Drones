@@ -97,8 +97,6 @@ and running
 
 - configure the server for springboot
     -  `sudo apt install openjdk-11-jre openjdk-11-jdk`
-    - `mkdir artifact`
-    - copy jar to artifact dir
     - create `/etc/systemd/system/drone_service.service` and add the following config
     ```
     [unit]
@@ -112,7 +110,7 @@ and running
     Restart=always
     RestartSec=1
     User=your_user
-    ExecStart=/usr/bin/java -jar /artifact/drones-0.0.1-SNAPSHOT.jar
+    ExecStart=/usr/bin/java -jar /root/actions-runner/_work/Drones/Drones/build/libs/the-drone-0.0.1-SNAPSHOT.jar
 
     [Install]
     WantedBy=multi-user.target

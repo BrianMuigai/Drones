@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: self-hosted
@@ -18,9 +15,12 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Build setup task
-      run: ./gradlew init
-    - name: Build with Gradle and test
-      run: ./gradlew build
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+      with:
+        arguments: build
+    #Run Tests
+    - name: Run Tests
+      run: ./gradlew test
     - name: Execute jar
       run: sudo kill -9 `sudo lsof -t -i:80` & sudo java -jar /root/actions-runner/_work/Drones/Drones/build/libs/the-drone-0.0.1-SNAPSHOT.jar &
