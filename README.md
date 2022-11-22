@@ -95,3 +95,26 @@ and running
 
 # Deployment
 
+- configure the server for springboot
+    -  `sudo apt install openjdk-11-jre openjdk-11-jdk`
+    - `mkdir artifact`
+    - copy jar to artifact dir
+    - create `/etc/systemd/system/drone_service.service` and add the following config
+    ```
+    [unit]
+    Description=This is a Drone spring app
+    Boot
+    After=network.target
+    StartLimitIntervalSec=0
+
+    [Service]
+    Type=simple
+    Restart=always
+    RestartSec=1
+    User=your_user
+    ExecStart=/usr/bin/java -jar /artifact/drones-0.0.1-SNAPSHOT.jar
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+    - Enable autorestart by `systemctl enable drone_service.service`
