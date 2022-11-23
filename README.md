@@ -94,9 +94,12 @@ and running
 
 
 # Deployment
-
+### Add new User where the application will be runnig
+- `adduser drone`
+- `usermod -a -G sudo drone`
 ### Create a runner from git for auto-deploy
 - under repo/settings, got to actions and select runner... create one and follow the instructions to install the runner on the VM
+- if root, remember to run `export RUNNER_ALLOW_RUNASROOT="1"` before config
 - after successful config.. exec 
     - `sudo ./svc.sh install`
     - `sudo ./svc.sh start`
@@ -106,9 +109,6 @@ and running
 - Install systemd `sudo apt-get install systemd`
 ### Install Java
 - configure the server for springboot `sudo apt install openjdk-11-jre openjdk-11-jdk`
-### Add new User where the application will be runnig
-- `adduser drone`
-- `usermod -a -G sudo drone`
 ### Create service file to start the app
 - create `/etc/systemd/system/drone_service.service` and add the following config
     ```
