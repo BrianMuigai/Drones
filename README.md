@@ -97,13 +97,17 @@ and running
 ### Add new User where the application will be runnig
 - `adduser drone`
 - `usermod -a -G sudo drone`
-### Create a runner from git for auto-deploy
-- under repo/settings, got to actions and select runner... create one and follow the instructions to install the runner on the VM
-- if root, remember to run `export RUNNER_ALLOW_RUNASROOT="1"` before config
-- after successful config.. exec 
-    - `sudo ./svc.sh install`
-    - `sudo ./svc.sh start`
-- create a push/pr-merge to main to initiate the runner
+## self-hosted runners
+- ### Create a runner from git for auto-deploy
+    - under repo/settings, got to actions and select runner... create one and follow the instructions to install the runner on the VM
+    - if root, remember to run `export RUNNER_ALLOW_RUNASROOT="1"` before config
+    - after successful config.. exec 
+        - `sudo ./svc.sh install`
+        - `sudo ./svc.sh start`
+    - create a push/pr-merge to main to initiate the runner
+## github-hosted
+- Copy server private key and add it to git credentials as SSH_KEY
+- 
 ### Nginx
 - Install nginx `sudo apt-get install nginx`
 - Install systemd `sudo apt-get install systemd`
