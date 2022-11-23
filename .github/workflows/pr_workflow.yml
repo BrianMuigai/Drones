@@ -33,18 +33,10 @@ jobs:
   deploy:
     needs: build
     name: Deploy
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - name: Download JAR
+      - name: Download and Deploy JAR
         uses: actions/download-artifact@v3
         with:
           name: artifact
-      - name: Deploy
-        uses: appleboy/ssh-action@v0.1.2
-        with:
-          host: ${{secrets.SSH_HOST}}
-          key: ${{secrets.SSH_KEY}}
-          username: ${{secrets.SSH_USERNAME}}
-
-          script: |
-            mkdir drone && cd drone && mv artifact the-drone.jar
+      
