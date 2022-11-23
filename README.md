@@ -151,3 +151,5 @@ and running
     }
     ```
 - link the file to sites-enabled by `ln -s /etc/nginx/sites-available/drone /etc/nginx/sites-enabled`
+
+- push a commit to the repo to initiate the runner
