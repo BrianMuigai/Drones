@@ -95,24 +95,59 @@ and running
 
 # Deployment
 
-- configure the server for springboot
-    -  `sudo apt install openjdk-11-jre openjdk-11-jdk`
-    - create `/etc/systemd/system/drone_service.service` and add the following config
+### Create a runner from git for auto-deploy
+- under repo/settings, got to actions and select runner... create one and follow the instructions to install the runner on the VM
+- after successful config.. exec 
+    - `sudo ./svc.sh install`
+    - `sudo ./svc.sh start`
+- create a push/pr-merge to main to initiate the runner
+### Nginx
+- Install nginx `sudo apt-get install nginx`
+- Install systemd `sudo apt-get install systemd`
+### Install Java
+- configure the server for springboot `sudo apt install openjdk-11-jre openjdk-11-jdk`
+### Add new User where the application will be runnig
+- `adduser drone`
+- `usermod -a -G sudo drone`
+### Create service file to start the app
+- create `/etc/systemd/system/drone_service.service` and add the following config
     ```
     [unit]
     Description=This is a Drone spring app
     Boot
-    After=network.target
+    After=syslog.target
+    After=network.target[Service]
     StartLimitIntervalSec=0
 
     [Service]
     Type=simple
     Restart=always
     RestartSec=1
-    User=your_user
+    User=drone
+    StandardOutput=syslog
+    StandardError=syslog
+    SyslogIdentifier=drone_service
     ExecStart=/usr/bin/java -jar /root/actions-runner/_work/Drones/Drones/build/libs/the-drone-0.0.1-SNAPSHOT.jar
 
     [Install]
     WantedBy=multi-user.target
     ```
     - Enable autorestart by `systemctl enable drone_service.service`
+### Create nginx config file
+- create `/etc/nginx/sites-available/drone` file and add the below setup:
+    ```
+    server {
+        listen 80;
+        listen [::]:80;
+        server_name <servername>;
+
+            location / {
+            proxy_pass http://localhost:8080/;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Forwarded-Port $server_port;
+        }
+
+    }
+    ```
+- link the file to sites-enabled by `ln -s /etc/nginx/sites-available/drone /etc/nginx/sites-enabled`
