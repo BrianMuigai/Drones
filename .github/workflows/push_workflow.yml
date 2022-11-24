@@ -44,7 +44,6 @@ jobs:
           name: artifact
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: appfile
       - name: SCP file to server
         uses: appleboy/scp-action@master
         with:
