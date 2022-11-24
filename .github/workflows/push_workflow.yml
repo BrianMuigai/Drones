@@ -51,6 +51,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           rm: true
-          source: build/libs/the-drone-0.0.1-SNAPSHOT.jar
+          source: the-drone-0.0.1-SNAPSHOT.jar
           target: "scp/the-drone.jar"
       
