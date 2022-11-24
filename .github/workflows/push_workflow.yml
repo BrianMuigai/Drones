@@ -47,5 +47,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           rm: true
           source: "build/libs/the-drone-0.0.1-SNAPSHOT.jar"
-          target: "scp/the-drone.jar"
+          target: "scp/artifacts"
       
