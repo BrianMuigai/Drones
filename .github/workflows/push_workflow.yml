@@ -33,7 +33,7 @@ jobs:
   deploy:
     needs: tests
     name: Deploy
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Download and Deploy JAR
         uses: actions/download-artifact@v3
