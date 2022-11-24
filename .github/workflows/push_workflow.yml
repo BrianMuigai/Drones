@@ -23,27 +23,16 @@ jobs:
         arguments: build
     - name: Test
       run: ./gradlew test
-    - name: Clean
-      run: ./gradlew clean
-    - name: Create runnable fat jar
-      run: ./gradlew bootJar
-    - name: Upload JAR
-      uses: actions/upload-artifact@v3
-      with:
-        name: artifact
-        path: build/libs/the-drone-0.0.1-SNAPSHOT.jar
  
   deploy:
     needs: tests
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Download and Deploy JAR
-        uses: actions/download-artifact@v3
-        with:
-          name: artifact
-      - name: Display structure of downloaded files
-        run: ls -R
+      - name: Clean
+        run: ./gradlew clean
+      - name: Create runnable fat jar
+        run: ./gradlew bootJar
       - name: SCP file to server
         uses: appleboy/scp-action@master
         with:
@@ -51,6 +40,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           rm: true
-          source: the-drone-0.0.1-SNAPSHOT.jar
+          source: "build/libs/the-drone-0.0.1-SNAPSHOT.jar"
           target: "scp/the-drone.jar"
       
