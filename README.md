@@ -125,7 +125,7 @@ and running
     StandardOutput=syslog
     StandardError=syslog
     SyslogIdentifier=drone_service
-    ExecStart=/usr/bin/java -jar /root/scp/artifacts/the-drone-0-0-1-SNAPSHOT.jar
+    ExecStart=/usr/bin/java -jar /root/scp/artifacts/the-drone-0.0.1-SNAPSHOT.jar
 
     [Install]
     WantedBy=multi-user.target

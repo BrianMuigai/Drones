@@ -38,7 +38,7 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-       - name: Download and Deploy JAR
+      - name: Download and Deploy JAR
         uses: actions/download-artifact@v3
         with:
           name: artifact
