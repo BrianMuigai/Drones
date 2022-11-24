@@ -23,6 +23,10 @@ jobs:
         arguments: build
     - name: Test
       run: ./gradlew test
+    - name: Clean
+      run: ./gradlew clean
+    - name: Create runnable fat jar
+      run: ./gradlew bootJar
     - name: Upload JAR
       uses: actions/upload-artifact@v3
       with:
