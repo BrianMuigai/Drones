@@ -42,7 +42,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: artifact
-          path: appfile
       - name: Display structure of downloaded files
         run: ls -R
         working-directory: appfile
@@ -53,6 +52,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           rm: true
-          source: appfile/*
+          source: build/libs/the-drone-0.0.1-SNAPSHOT.jar
           target: "scp/the-drone.jar"
       
