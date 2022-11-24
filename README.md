@@ -110,7 +110,7 @@ and running
 ### Create service file to start the app
 - create `/etc/systemd/system/drone_service.service` and add the following config
     ```
-    [unit]
+    [Unit]
     Description=This is a Drone spring app
     Boot
     After=syslog.target
@@ -125,7 +125,7 @@ and running
     StandardOutput=syslog
     StandardError=syslog
     SyslogIdentifier=drone_service
-    ExecStart=/usr/bin/java -jar /root/scp/the-drone.jar
+    ExecStart=/usr/bin/java -jar /root/scp/artifacts/the-drone-0-0-1-SNAPSHOT.jar
 
     [Install]
     WantedBy=multi-user.target
